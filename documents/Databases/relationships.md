@@ -13,4 +13,5 @@
 
 ## 備考
 
-- following_id及びfollowed_idはどちらもusersテーブルのid
+- 外部キーについて
+  - following_id及びfollowed_idの参照先はどちらもusersテーブルのidカラム
