@@ -7,7 +7,7 @@
 
 | 論理(項目)名          | 物理(カラム)名    | データ型         | Null許可 | Key | デフォルト値 | その他設定     | 備考        |
 |-----------------------|-------------------|------------------|:--------:|:---:|--------------|----------------|-------------|
-| ID                    | id                | int(11)          | NO       | PK  | なし         | auto_increment |             |
+| ID                    | id                | int(11)          | NO       | PK  | なし         | auto_increment | UNSIGNED    |
 | ユーザー名            | name              | varchar(50)      | NO       |     | なし         | UNIQUE         |             |
 | 自己紹介              | self_introduction | varchar(1000)    | YES      |     | NULL         |                |             |
 | プロフィール画像パス  | profile_pic_path  | varchar(255)     | YES      |     | NULL         | UNIQUE         |             |
