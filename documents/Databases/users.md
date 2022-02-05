@@ -9,7 +9,7 @@
 |-----------------------|-------------------|------------------|:--------:|:---:|--------------|----------------|-------------|
 | ID                    | id                | int(11)          | NO       | PK  | なし         | auto_increment | UNSIGNED    |
 | ユーザー名            | name              | varchar(50)      | NO       |     | なし         | UNIQUE         |             |
-| 自己紹介              | self_introduction | varchar(1000)    | YES      |     | NULL         |                |             |
+| 自己紹介              | self_introduction | varchar(160)     | YES      |     | NULL         |                |             |
 | プロフィール画像パス  | profile_pic_path  | varchar(255)     | YES      |     | NULL         | UNIQUE         |             |
 | Eメールアドレス       | email             | varchar(254)     | NO       |     | なし         | UNIQUE         |             |
 | Eメールアドレス確認日 | email_verified_at | timestamp        | YES      |     | NULL         |                |             |
@@ -26,5 +26,6 @@
     - Eメールアドレス確認日
     - 持続ログイントークン
 - 自己紹介は文字数を制限するため、text型ではなくvarchar型を選択
+- 自己紹介の文字数は画面イメージが崩れない文字数として160文字を設定
 - 作成/更新/削除日時はアプリケーション側で自動で入力される
 - 作成/更新日時については、Laravel8で自動生成されるマイグレーションファイルではNULL許可だが、今回のサービスにおいては、作成/更新日不明のデータが格納されることは想定されないためNOT NULL制約をつける
