@@ -1,13 +1,13 @@
 ## テーブル名
 
-- 論理名: リレーション
-- 物理名: relationships
+- 論理名: ユーザーフォロー
+- 物理名: user_follow_relationships
 
 ## テーブル定義
 
 | 論理(項目)名                 | 物理(カラム)名    | データ型         | Null許可 | Key | デフォルト値 | その他設定     | 備考        |
 |------------------------------|-------------------|------------------|:--------:|:---:|--------------|----------------|-------------|
-| リレーションID               | id                | int(11)          | NO       | PK  | なし         | auto_increment | UNSIGNED    |
+| ユーザーフォローID               | id                | int(11)          | NO       | PK  | なし         | auto_increment | UNSIGNED    |
 | フォローする側のユーザーID   | following_id      | int(11)          | NO       | FK  | なし         |                | UNSIGNED    |
 | フォローされる側のユーザーID | followed_id       | int(11)          | NO       | FK  | なし         |                | UNSIGNED    |
 
