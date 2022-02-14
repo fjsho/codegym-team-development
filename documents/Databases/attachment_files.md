@@ -9,4 +9,6 @@
 |-------------------|------------------|-----------------|:--------:|:---:|------------------|----------------|-------------|
 | 投稿者ID           | id               | bigint          | NO       | PK  | なし              |                | UNSIGNED    |
 | 添付ファイル画像パス | attachment_path  | varchar(2500)   | NO       | FK  | なし               |                |             |
-| 作成日時           | created_at       | datetime        | NO       |     | current_timestamp |                |             |
+| 作成日時           | created_at       | timestamp       | NO       |     |                   |                |             |
+| 更新日時           | updated_at       | timestamp       | NO       |     |                   |                |             |
+| 削除日時           | deleted_at       | timestamp       | NO       |     |                   |                |             |
