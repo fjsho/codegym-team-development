@@ -12,6 +12,6 @@
 | 添付ファイルID  | attachment_id    | bigint          | YES      | FK  | なし              |                | UNSIGNED    |
 | タイトル       | title             | varchar(255)    | NO       |    | なし              |                |             |
 | 投稿内容       | content           | varchar(10000)  | NO       |    | なし              |                |             |
-| 更新日時       | updated_at        | datetime        | NO       |    | NULL              |                |             |
-| 公開日時       | released_at       | datetime        | YES      |    | NULL              |                |             |
-| 削除日時       | deleted_at        | datetime        | YES      |    | NULL              |                |             |
+| 更新日時       | updated_at        | timestamp       | NO       |    | NULL              |                |             |
+| 公開日時       | released_at       | timestamp       | YES      |    | NULL              |                |             |
+| 削除日時       | deleted_at        | timestamp       | YES      |    | NULL              |                |             |
