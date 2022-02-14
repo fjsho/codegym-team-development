@@ -8,7 +8,7 @@
 | 論理(項目)名        | 物理(カラム)名       | データ型         | Null許可  | Key | デフォルト値       | その他設定       | 備考        |
 |-------------------|--------------------|-----------------|:--------:|:---:|------------------|----------------|-------------|
 | 投稿者ID           | id                 | bigint          | NO       | PK  | なし              |                | UNSIGNED    |
-| 添付ファイル画像パス | attachment_pic_path | varchar(2500)  | NO       |     | なし               |                |             |
+| 添付ファイル画像パス | attachment_pic_path | varchar(255)  | NO       |     | なし               |                |             |
 | 作成日時           | created_at          | timestamp      | NO       |     |                   |                |             |
 | 更新日時           | updated_at          | timestamp      | NO       |     |                   |                |             |
 | 削除日時           | deleted_at          | timestamp      | NO       |     |                   |                |             |
