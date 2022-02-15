@@ -41,26 +41,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    // @check 仮実装。レシピ機能との統合後、要確認。
     /**
-     * ユーザーのプロジェクトを取得.
+     * ユーザーのレシピを取得.
      */
-    public function projects()
+    public function recipes()
     {
         return $this->hasMany(Project::class, 'created_user_id');
     }
-
-    /**
-     * ユーザーの課題を取得.
-     */
-    public function tasks()
-    {
-        return $this->hasMany(Task::class, 'created_user_id');
-    }
-
-    /**
-     * ユーザーの画像を取得.
-     */
-    public function pictures()
-    {
-        return $this->hasMany(TaskPicture::class, 'created_user_id');
-    }}
