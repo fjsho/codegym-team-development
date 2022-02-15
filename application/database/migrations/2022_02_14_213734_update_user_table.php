@@ -14,8 +14,8 @@ class UpdateUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('self_introduction', 160)->nullable();
-            $table->string('profile_pic_path', 255)->nullable()->unique();
+            $table->string('self_introduction', 160)->nullable()->after('name');
+            $table->string('profile_pic_path', 255)->nullable()->unique()->after('self_introduction');
             $table->softDeletes();
         });
     }
