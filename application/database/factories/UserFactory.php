@@ -23,8 +23,14 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $storage_dir_path = './storage/app/public/profile_pic';
+        $picture = $this->faker->image($storage_dir_path, 300, 300, 'people', false);
+        $file_path = str_replace($storage_dir_path, '', $picture);
+
         return [
             'name' => $this->faker->unique()->name,
+            'self_introduction' => $this->faker->realText(random_int(10, 160)),
+            'profile_pic_path' => $file_path,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
