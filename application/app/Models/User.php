@@ -49,3 +49,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Project::class, 'created_user_id');
     }
+}
