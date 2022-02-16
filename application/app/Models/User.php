@@ -41,6 +41,22 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * 自分がフォローしているユーザーを取得.
+     */
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'user_follow_relationships', 'following_id', 'followed_id');
+    }
+
+    /**
+     * 自分がフォローされているユーザーを取得.
+     */
+    public function followed()
+    {
+        return $this->belongsToMany(User::class, 'user_follow_relationships', 'followed_id', 'following_id');
+    }
+
     // @check 仮実装。レシピ機能との統合後、要確認。
     /**
      * ユーザーのレシピを取得.
