@@ -23,6 +23,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        //ダミープロフィール画像保存用の記述
         $storage_dir_path = './storage/app/public/profile_pic';
         $picture = $this->faker->image($storage_dir_path, 300, 300, 'people', false);
         $file_path = str_replace($storage_dir_path, '', $picture);
