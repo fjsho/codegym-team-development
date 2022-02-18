@@ -42,25 +42,27 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * ユーザーのプロジェクトを取得.
+     * 自分がフォローしているユーザーを取得.
      */
-    public function projects()
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'user_follow_relationships', 'following_id', 'followed_id');
+    }
+
+    /**
+     * 自分がフォローされているユーザーを取得.
+     */
+    public function followed()
+    {
+        return $this->belongsToMany(User::class, 'user_follow_relationships', 'followed_id', 'following_id');
+    }
+
+    // @check 仮実装。レシピ機能との統合後、要確認。
+    /**
+     * ユーザーのレシピを取得.
+     */
+    public function recipes()
     {
         return $this->hasMany(Project::class, 'created_user_id');
     }
-
-    /**
-     * ユーザーの課題を取得.
-     */
-    public function tasks()
-    {
-        return $this->hasMany(Task::class, 'created_user_id');
-    }
-
-    /**
-     * ユーザーの画像を取得.
-     */
-    public function pictures()
-    {
-        return $this->hasMany(TaskPicture::class, 'created_user_id');
-    }}
+}
