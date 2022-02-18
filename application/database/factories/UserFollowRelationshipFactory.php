@@ -23,8 +23,6 @@ class UserFollowRelationshipFactory extends Factory
     public function definition()
     {
         //
-        return [
-            
-        ];
+        return [];
     }
 }

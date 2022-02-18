@@ -25,6 +25,5 @@ class UserFollowRelationship extends Model
      * @var bool
      */
     //このテーブルは中間テーブルであり、フォローの有無（=レコードの有無）を判定できればいいのでfalseとした
-    public $timestamps = false; 
-
+    public $timestamps = false;
 }
