@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->timestamp('released_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
         });
     }
 
