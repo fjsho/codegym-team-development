@@ -18,5 +18,8 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Post::factory(10)->create();
         $this->call(PostSeeder::class); 
+
+        \App\Models\User::factory(10)->create();
+        $this->call(UserFollowRelationshipSeeder::class);
     }
 }
