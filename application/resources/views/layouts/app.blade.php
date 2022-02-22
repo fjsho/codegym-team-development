@@ -22,16 +22,16 @@
 
         <!-- Page Content -->
         <main class="md:flex">
-            <div class="md:flex flex-col md:flex-row md:min-h-screen">
+            {{-- <div class="md:flex flex-col md:flex-row md:min-h-screen">
                 @include('layouts.side-menu', ['sidemenu' => $sidemenu])
-            </div>
+            </div> --}}
             <div class="md:flex flex-col w-full">
                 <!-- Page Heading -->
-                <header class="bg-white">
+                {{-- <header class="bg-white">
                     <div class="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
-                </header>
+                </header> --}}
                 {{ $slot }}
             </div>
         </main>
