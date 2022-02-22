@@ -5,14 +5,14 @@
         </h2>
     </x-slot>
 
-    <x-slot name="sidemenu">
+    {{-- <x-slot name="sidemenu">
         <x-side-menu-link :href="route('projects.index')" :active="request()->routeIs('projects.index')">
             {{ __('Projects') }}
         </x-side-menu-link>
         <x-side-menu-link :href="route('projects.create')" :active="request()->routeIs('projects.create')">
             {{ __('Project Create') }}
         </x-side-menu-link>
-    </x-slot>
+    </x-slot> --}}
 
     <div>
         <div class="mx-auto">
