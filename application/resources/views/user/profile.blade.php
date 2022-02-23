@@ -4,17 +4,23 @@
             <div class="flex flex-col mx-auto overflow-hidden">
                 <div class="flex justify-between items-end mx-3 py-3">
                     <div>
-                        <img src="" alt="profile_pic" class="w-28 h-28 bg-blue-400">
+                        <img src="{{$profile->profile_pic_path}}" alt="profile_pic" class="w-28 h-28 bg-blue-400">
                     </div>
                     <div>
-                        <x-button>プロフィール編集</x-button>
+                        @if ($user->id === $profile->id)
+                            <x-link-button>プロフィール編集</x-link-button>
+                        @elseif ($user->following->id === $profile->id)
+                            <x-button>フォロー中</x-button>
+                        @else
+                            <x-button>フォロー</x-button>
+                        @endif
                     </div>
                 </div>
                 <div class="pb-6 text-xl">
-                    <p>ユーザー名 / テストテストテストテストテス</p>
+                    <p>{{$profile->name}}</p>
                 </div>
                 <div class="text-sm">
-                    <p>自己紹介メッセージ / テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテ</p>
+                    <p>{{$profile->self_introduction}}</p>
                 </div>
             </div>
         </div>
