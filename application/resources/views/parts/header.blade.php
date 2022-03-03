@@ -1,32 +1,41 @@
-<nav class="navbar navbar-expand-lg navbar-light pl-5 pr-5 pt-2 pb-2">
-  <a class=" logo navbar-brand" href="/">学習レシピ</a>
-  <div class="collapse navbar-collapse" id="Navber">
-    <ul class="navbar-nav ml-auto mr-5">
-      <li class="nav-item ml-2">
-        <button class="  nav-link text-white" href="#">自分の記事</button>
-      </li>
-      <li class="nav-item ml-2">
-        <button class="nav-link text-white" id="post-link" href="/drafts/new">プロフィール</button>
-      </li>
-      <li class="nav-item ml-2">
-        <button class="nav-link text-white" id="register" href="/register">ユーザ登録</button>
-      </li>
-      <li class="nav-item ml-2">
-        <button class="nav-link text-white" href="#">ログイン</button>
-      </li>
+@guest
+<!-- ログインしていない時 -->
+<header class="page-header wrapper">
+  <h1>ロゴ</h1>
+  <nav>
+    <ul class="main-nav">
+      <li>ログイン</li>
+      <li><button class="">会員登録</button></li>
     </ul>
-  </div>
-</nav>
+  </nav>
+</header>
+@endguest
+<!-- ログインしている時 -->
+@auth
+<header class="page-header wrapper">
+  <h1>ロゴ</h1>
+  <nav>
+    <ul class="main-nav">
+      <li>プロフィール</li>
+      <li><button class="">投稿する</button></li>
+    </ul>
+  </nav>
+</header>
+@endauth
 
 <style>
-  .navbar-laravel {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+
+  .wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4%;
   }
 
   button {
-    background-color: #008CFF;
-    border-radius: 100vh;
+    background: #0bd;
+    color: #fff;
+    border-radius: 5px;
+    padding: 4px 8px;
   }
 
   html {
@@ -35,12 +44,21 @@
   }
 
   body {
-    font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Hiragino Kaku Gothic ProN, "メイリオ", meiryo, sans-serif;
     font-weight: 400;
   }
 
-  nav {
-    background-color: #CCCCCC !important;
+  .main-nav {
+    display: flex;
+  }
+
+  .main-nav li {
+    margin-left: 36px;
+    color: black;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 34px;
   }
 </style>
