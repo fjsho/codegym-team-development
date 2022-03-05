@@ -24,3 +24,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+// @check マージ前に削除する
+Route::get('/test', function () {
+    return view('test');
+})->middleware(['auth'])->name('test');
