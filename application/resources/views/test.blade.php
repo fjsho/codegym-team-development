@@ -55,14 +55,14 @@
                                 </div>
                                 <div class="px-4 mb-8">
                                     <h2 class="font-semibold text-xl">ログイン画面</h2>
-                                    <p>テキストボックス</p>
+                                    <x-label>テキストボックス</x-label>
                                     <x-input />
                                     <p>ログインボタン</p>
                                     <x-submit-button-main href="#">ログイン</x-submit-button-main>
                                 </div>
                                 <div class="px-4 mb-8">
                                     <h2 class="font-semibold text-xl">ユーザー登録画面</h2>
-                                    <p>テキストボックス</p>
+                                    <x-label>テキストボックス</x-label>
                                     <x-input />
                                     <p>登録ボタン</p>
                                     <x-submit-button-main href="#">登録する</x-submit-button-main>
@@ -75,7 +75,12 @@
                                     <x-eye-chacher src="storage/profile_pic/Rectangle.png" alt="" />
                                 </div>
                                 <div class="px-4 mb-8">
-                                    <h2 class="font-semibold text-xl">レシピ投稿画面</h2>
+                                    <h2 class="font-semibold text-xl">レシピ投稿/編集画面</h2>
+                                    <p>アップロードアイコン</p>
+                                    <x-upload-icon class="h-12 w-12" />
+                                    <p>タイトル編集欄</p>
+                                    <x-input-nonborder placeholder="タイトル" />
+                                    <p>内容編集欄</p>
                                     <x-textarea class="h-4/5" value="レシピ投稿画面"></x-textarea>
                                 </div>
                                 <div class="px-4 mb-8">
@@ -89,8 +94,6 @@
                                         <x-follow-button>フォロー中</x-follow-button>
                                         <p>フォローする</p>
                                         <x-unfollow-button>フォロー</x-unfollow-button>
-                                        {{-- <x-upload-icom class="h-20 w-20 bg-red-500">アイコン</x-upload-icom> --}}
-            
                                     </div>
                                 </div>
                                 <div class="px-4 mb-8">
@@ -104,6 +107,8 @@
                                     <x-textarea value="自己紹介" rows="4"></x-textarea>
                                     <p>プロフィール編集保存ボタン</p>
                                     <x-submit-button-gray href="#">プロフィール保存</x-submit-button-gray>
+                                    <p>退会ボタン</p>
+                                    {{-- <x-destroy-button>退会する</x-destroy-button> --}}
                                 </div>
                             </div>
                         </div>
