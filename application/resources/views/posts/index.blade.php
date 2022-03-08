@@ -31,10 +31,10 @@
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 text-sm leading-normal">
                             <th class="py-3 px-6 text-left">
-                                @sortablelink('title', __('Project Key'))
+                                @sortablelink('title', __('Post Title'))
                             </th>
                             <th class="py-3 px-6 text-left">
-                                @sortablelink('name', __('Project Name'))
+                                @sortablelink('name', __('Name'))
                             </th>
                             <th class="py-3 px-6 text-center">
                                 @sortablelink('created_at', __('Created At'))
