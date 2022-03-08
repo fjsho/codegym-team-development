@@ -24,3 +24,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+//動作確認のため追加
+Route::resource('projects', ProjectController::class)
+    ->middleware(['auth']);
+
+Route::resource('projects/{project}/tasks', TaskController::class)
+    ->middleware(['auth']);
