@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProjectController;
+//use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,8 +27,8 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 //動作確認のため追加
-Route::resource('projects', ProjectController::class)
-    ->middleware(['auth']);
+// Route::resource('projects', ProjectController::class)
+//     ->middleware(['auth']);
 
 // Route::resource('projects/{project}/tasks', TaskController::class)
 //     ->middleware(['auth']);

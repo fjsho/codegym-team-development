@@ -2,74 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
-use App\Models\Task;
-use App\Models\TaskCategory;
-use App\Models\TaskKind;
-use App\Models\TaskStatus;
+use App\Models\AttachmentFile;
+use App\Models\Post;
 use App\Models\User;
+use App\Models\UserFollowRelationship;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Project $project)
+    public function index(Request $request)
     {
         $request->validate([
             'keyword' => 'max:255',
-            'assigner_id' => 'nullable|integer',
+            //'assigner_id' => 'nullable|intedsadawdager',
         ]);
 
-        $assigners = User::all();
-
-        $assigner_id = $request->input('assigner_id');
         $keyword = $request->input('keyword');
-        $tasks = Task::select(
-            'tasks.*',
-            'tasks.id as key,'
-        )
-            ->with('task_kind')
-            ->with('task_status')
-            ->with('assigner')
+        $posts = Post::select('*')
             ->with('user')
-            ->with('project')
-            ->join('projects', 'tasks.project_id', 'projects.id')
-            ->where('project_id', '=', $project->id);
+            ->with('attachment');
+        
+        //ここから下の検索・ソート機能は未実装なのでここはいじってません。柳澤
         if ($request->has('keyword') && $keyword != '') {
-            $tasks
-                ->join('users as search_users', 'tasks.created_user_id', 'search_users.id')
-                ->join('task_kinds as search_task_kinds', 'tasks.task_kind_id', 'search_task_kinds.id')
-                ->leftJoin('users as search_assigner', 'tasks.assigner_id', 'search_assigner.id');
-            $tasks
-                ->where(function ($tasks) use ($keyword) {
-                    $tasks
-                        ->where('search_task_kinds.name', 'like', '%'.$keyword.'%')
-                        ->orWhere('projects.key', 'like', '%'.$keyword.'%')
-                        ->orWhere('tasks.name', 'like', '%'.$keyword.'%')
-                        ->orWhere('search_assigner.name', 'like', '%'.$keyword.'%')
-                        ->orWhere('search_users.name', 'like', '%'.$keyword.'%');
-                });
+            $posts = $posts
+                ->where('name', 'like', '%'.$keyword.'%');
         }
-        if ($request->has('assigner_id') && isset($assigner_id)) {
-            $tasks->where('tasks.assigner_id', '=', $assigner_id);
-        }
-        $tasks = $tasks
+        $posts = $posts
             ->sortable('name')
             ->paginate(20)
             ->appends(['keyword' => $keyword]);
 
-        return view('tasks.index', compact('tasks'), [
-            //'project' => $project,
-            'assigners' => $assigners,
-            'assigner_id' => $assigner_id,
+        return view('posts.index', compact('posts'), [
             'keyword' => $keyword,
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *

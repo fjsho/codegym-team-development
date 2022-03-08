@@ -20,6 +20,7 @@ class ProjectController extends Controller
 
         $keyword = $request->input('keyword');
         $projects = Project::select('*');
+        
         if ($request->has('keyword') && $keyword != '') {
             $projects = $projects
                 ->where('key', 'like', '%'.$keyword.'%')

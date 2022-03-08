@@ -6,7 +6,7 @@
     </x-slot>
 
     <x-slot name="sidemenu">
-        <x-side-menu-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
+        <x-side-menu-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
             {{ __('Posts') }}
         </x-side-menu-link>
         <x-side-menu-link :href="route('tasks.create')" :active="request()->routeIs('tasks.create')">
