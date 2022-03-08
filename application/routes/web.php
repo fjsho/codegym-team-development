@@ -31,3 +31,7 @@ Route::resource('projects', ProjectController::class)
 
 Route::resource('projects/{project}/tasks', TaskController::class)
     ->middleware(['auth']);
+
+//tasksをproject経由させずに表示
+Route::resource('tasks', TaskController::class)
+    ->middleware(['auth']);

@@ -151,6 +151,8 @@
     "You may delete any of your existing tokens if they are no longer needed.": "不要なAPIトークンを削除する。",
     "You may not delete your personal team.": "パーソナルチームを削除することはできません。",
     "You may not leave a team that you created.": "自身が作成したチームを離れることはできません。",
+    "Posts": "投稿一覧",
+    "Post Create": "投稿の作成",
     "Projects": "プロジェクト一覧",
     "Project Create": "プロジェクトの作成",
     "Project Key": "プロジェクトキー",

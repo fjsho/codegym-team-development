@@ -6,11 +6,11 @@
     </x-slot>
 
     <x-slot name="sidemenu">
-        <x-side-menu-link :href="route('projects.index')" :active="request()->routeIs('projects.index')">
-            {{ __('Projects') }}
+        <x-side-menu-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
+            {{ __('Posts') }}
         </x-side-menu-link>
-        <x-side-menu-link :href="route('projects.create')" :active="request()->routeIs('projects.create')">
-            {{ __('Project Create') }}
+        <x-side-menu-link :href="route('tasks.create')" :active="request()->routeIs('tasks.create')">
+            {{ __('Post Create') }}
         </x-side-menu-link>
     </x-slot>
 
@@ -18,6 +18,7 @@
         <div class="mx-auto">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    
                     You're logged in!
                 </div>
             </div>

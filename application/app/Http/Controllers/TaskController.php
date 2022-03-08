@@ -63,7 +63,7 @@ class TaskController extends Controller
             ->appends(['keyword' => $keyword]);
 
         return view('tasks.index', compact('tasks'), [
-            'project' => $project,
+            //'project' => $project,
             'assigners' => $assigners,
             'assigner_id' => $assigner_id,
             'keyword' => $keyword,
