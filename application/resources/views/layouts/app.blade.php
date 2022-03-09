@@ -22,9 +22,11 @@
 
         <!-- Page Content -->
         <main class="md:flex">
-            <div class="md:flex flex-col md:flex-row md:min-h-screen">
+            <!-- サイドメニュー使わないため無効化 -->
+            <!-- <div class="md:flex flex-col md:flex-row md:min-h-screen">
                 @include('layouts.side-menu', ['sidemenu' => $sidemenu ?? ''])
-            </div>
+            </div> -->
+
             <div class="md:flex flex-col w-full">
                 <!-- Page Heading -->
                 <header class="bg-white">
