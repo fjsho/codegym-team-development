@@ -10,6 +10,8 @@
         <x-validation-errors :errors="$errors" />
 
         <!-- Navigation -->
+        <!-- 検索時のの条件分岐は未実装 -->
+        
         <div class="flex max-w-full mx-auto px-4 py-6 sm:px-6 lg:px-6">
             <div class="md:w-1/3 px-3 mb-6 mr-6">
                 <x-label for="key" :value="__('Keyword')" class="{{ $errors->has('keyword') ? 'text-red-600' :'' }}" />
@@ -45,25 +47,29 @@
                             <th class="py-3 px-6 text-center"></th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 text-sm font-light">
-                        @foreach($posts as $post)
-                        <tr class="border-b border-gray-200 hover:bg-gray-100 cursor-pointer @if($loop->even)bg-gray-50 @endif" onclick="location.href='{{ route('posts.edit', ['post' => $post->id]) }}'">
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                 <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->title }}</a> 
-                            </td>
-                            <td class="py-3 px-6 text-left">
-                                 <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->user->name }}</a> 
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                <span>{{ $post->created_at->format('Y/m/d') }}</span>
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                <span>{{ $post->updated_at->format('Y/m/d') }}</span>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
                 </table>
+                    <div class="text-gray-600 text-sm font-light">
+                        <div class="flex flex-wrap">
+                        @foreach($posts as $post)
+                            <div class="border-b border-gray-200 hover:bg-gray-100 cursor-pointer @if($loop->even)bg-gray-50 @endif" onclick="location.href='{{ route('posts.edit', ['post' => $post->id]) }}'">
+                                <div class="py-3 px-6 text-left whitespace-normal">
+                                    <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->title }}</a> 
+                                </div>
+                                <div class="py-3 px-6 text-left">
+                                    <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->user->name }}</a> 
+                                </div>
+                                <div class="py-3 px-6 text-center">
+                                    <span>{{ $post->created_at->format('Y/m/d') }}</span>
+                                    <span>{{ $post->updated_at->format('Y/m/d') }}</span>
+                                </div>
+                                <!-- <div class="py-3 px-6 text-center">
+
+                                </div> -->
+                            </div>
+                        @endforeach
+                        </div>
+                    </div>
+                
                 <div class="flex justify-start p-2">
                     {{ $posts->appends(request()->query())->links() }}
                 </div>
