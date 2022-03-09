@@ -20,22 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+Route::get('/dashboard', [PostController::class, 'index'])
+    ->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-
-//動作確認のため追加
-// Route::resource('projects', ProjectController::class)
-//     ->middleware(['auth']);
-
-// Route::resource('projects/{project}/tasks', TaskController::class)
-//     ->middleware(['auth']);
-
-//tasksをproject経由させずに表示
-Route::resource('tasks', TaskController::class)
-    ->middleware(['auth']);
 
 //Post用
     Route::resource('posts', PostController::class)
