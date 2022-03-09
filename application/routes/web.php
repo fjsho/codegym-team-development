@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +23,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-// @check マージ前に削除する
+// @todo：スプリントレビュー後に削除する
 Route::get('/test', function () {
     return view('test');
 })->middleware(['auth'])->name('test');
