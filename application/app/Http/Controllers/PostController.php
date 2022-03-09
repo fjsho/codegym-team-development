@@ -27,13 +27,13 @@ class PostController extends Controller
             ->with('user')
             ->with('attachment');
         
-        //ここから下の検索・ソート機能は未実装なのでここはいじってません。柳澤
+        //検索機能
         if ($request->has('keyword') && $keyword != '') {
             $posts = $posts
-                ->where('name', 'like', '%'.$keyword.'%');
+                ->where('title', 'like', '%'.$keyword.'%');
         }
         $posts = $posts
-            ->sortable('name')
+            ->sortable('title')
             ->paginate(20)
             ->appends(['keyword' => $keyword]);
 

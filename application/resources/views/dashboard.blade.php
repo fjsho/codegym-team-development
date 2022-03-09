@@ -10,8 +10,6 @@
         <x-validation-errors :errors="$errors" />
 
         <!-- Navigation -->
-        <!-- 検索時のの条件分岐は未実装 -->
-        
         <div class="flex max-w-full mx-auto px-4 py-6 sm:px-6 lg:px-6">
             <div class="md:w-1/3 px-3 mb-6 mr-6">
                 <x-label for="key" :value="__('Keyword')" class="{{ $errors->has('keyword') ? 'text-red-600' :'' }}" />
