@@ -60,8 +60,8 @@
                                         <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->user->name }}</a> 
                                     </div>
                                     <div class="py-3 px-6 text-center">
-                                        <span>作成日:{{ $post->created_at->format('Y/m/d') }}</span>
-                                        <span>更新日:{{ $post->updated_at->format('Y/m/d') }}</span>
+                                        <div>作成日:{{ $post->created_at->format('Y/m/d') }}</div>
+                                        <div>更新日:{{ $post->updated_at->format('Y/m/d') }}</div>
                                     </div>
                                     <!-- <div class="py-3 px-6 text-center">
 
