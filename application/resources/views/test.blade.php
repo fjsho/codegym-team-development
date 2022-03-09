@@ -106,9 +106,9 @@
                                     <p>自己紹介編集テキストボックス</p>
                                     <x-textarea value="自己紹介" rows="4"></x-textarea>
                                     <p>プロフィール編集保存ボタン</p>
-                                    <x-submit-button-gray href="#">プロフィール保存</x-submit-button-gray>
+                                    <x-submit-button-main href="#">更新する</x-submit-button-main>
                                     <p>退会ボタン</p>
-                                    {{-- <x-destroy-button>退会する</x-destroy-button> --}}
+                                    <x-destroy-button>退会する</x-destroy-button>
                                 </div>
                             </div>
                         </div>
