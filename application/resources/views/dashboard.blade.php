@@ -27,7 +27,8 @@
                 <div class="flex justify-start p-2">
                     {{ $posts->appends(request()->query())->links() }}
                 </div>
-                <table class="min-w-max w-full table-auto">
+                    <!-- 以下ソート用のタブ -->
+                <!-- <table class="min-w-max w-full table-auto">
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 text-sm leading-normal">
                             <th class="py-3 px-6 text-left">
@@ -45,19 +46,19 @@
                             <th class="py-3 px-6 text-center"></th>
                         </tr>
                     </thead>
-                </table>
+                </table> -->
                     <div class="text-gray-600 text-sm font-light">
                         <div class="flex flex-wrap justify-center">
                         @foreach($posts as $post)
                             <div class="py-3 px-6 w-1/2">
-                                <div class="border-gray-200 rounded-2xl hover:bg-gray-100 cursor-pointer bg-gray-50 " onclick="location.href='{{ route('posts.edit', ['post' => $post->id]) }}'">
+                                <div class="border-gray-200 rounded-2xl hover:bg-gray-300 cursor-pointer bg-gray-200 " onclick="location.href='{{ route('posts.edit', ['post' => $post->id]) }}'">
                                     <div class="py-3 px-6 text-left max-w-xs truncate">
                                         <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->title }}</a> 
                                     </div>
                                     <div class="py-3 px-6 text-left max-w-xs truncate">
                                         <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->user->name }}</a> 
                                     </div>
-                                    <div class="py-3 px-6 text-center">
+                                    <div class="py-3 px-6 text-left">
                                         <div>作成日:{{ $post->created_at->format('Y/m/d') }}</div>
                                         <div>更新日:{{ $post->updated_at->format('Y/m/d') }}</div>
                                     </div>
