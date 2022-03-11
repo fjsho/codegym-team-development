@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,10 @@ Route::get('/', [PostController::class, 'index'])
     ->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::resource('users', UserController::class)->only([
+    'show'
+]);
 
 //Post用
     Route::resource('posts', PostController::class)
