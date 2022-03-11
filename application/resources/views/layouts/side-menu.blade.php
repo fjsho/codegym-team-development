@@ -8,6 +8,6 @@
         </button>
     </div>
     <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
-        {{-- {{ $sidemenu }} --}}
+        {{ $sidemenu }}
     </nav>
 </div>
