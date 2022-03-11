@@ -1,7 +1,5 @@
 <?php
 
-//use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\TaskController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
