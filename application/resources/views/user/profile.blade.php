@@ -11,8 +11,9 @@
                     </div>
                     <div>
                         @if ($user->id === $profile->id)
-                            <x-link-button-gray>プロフィール編集</x-link-button-gray>
-                        {{-- @todo フォロー機能追加後、ボタンにそれぞれ機能を付与する --}}
+                        {{-- @TODO プロフィール編集画面完成後、リンク差し替え --}}
+                            <x-link-button-gray href="{{ route('users.show') }}">プロフィール編集</x-link-button-gray>
+                        {{-- @TODO フォロー機能追加後、ボタンにそれぞれ機能を付与する --}}
                         @elseif ($user->following->contains('id', $profile->id))
                             <x-unfollow-button>フォロー中</x-unfollow-button>
                         @else
