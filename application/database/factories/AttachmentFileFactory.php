@@ -21,8 +21,13 @@ class AttachmentFileFactory extends Factory
      */
     public function definition()
     {
+        //ダミープロフィール画像保存用の記述
+        $storage_dir_path = './storage/app/public/profile_pic';
+        $picture = $this->faker->image($storage_dir_path, 300, 300, 'posts', false);
+        $file_path = str_replace($storage_dir_path, '', $picture);
+
         return [
-        'attachment_pic_path' => $this->faker->url
+        'attachment_pic_path' => $file_path
         ];
     }
 }
