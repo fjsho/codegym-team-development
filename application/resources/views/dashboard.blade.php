@@ -53,13 +53,13 @@
                             <div class="py-3 px-6 w-1/2">
                                 <div class="border-gray-200 rounded-2xl hover:bg-gray-300 cursor-pointer bg-gray-200 " onclick="location.href='{{ route('posts.edit', ['post' => $post->id]) }}'">
                                     <div>
-                                        <a src="{{ $post->attachment->attachment_pic_path}}"></a>
+                                        <img src="{{asset('storage/profile_pic/'.$post->attachment->attachment_pic_path)}}">
                                     </div>
                                     <div class="py-3 px-6 text-left max-w-xs truncate">
                                         <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->title }}</a> 
                                     </div>
                                     <div class="py-3 px-6 text-left max-w-xs truncate">
-                                        <img src="{{asset('storage/app/public/profile_pic'.$post->attachment)}}">
+                                        <img src="{{asset('storage/profile_pic/'.$post->user->profile_pic_path)}}">
                                         <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->user->name }}</a> 
                                     </div>
                                     <div class="py-3 px-6 text-left">
