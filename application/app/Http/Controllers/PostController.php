@@ -49,6 +49,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show', ['post' => $post]);
+        $interval = $post->updated_at->diff(now());
+        return view('posts.show', [
+            'post' => $post,
+            'interval' => $interval
+        ]);
     }
 }
