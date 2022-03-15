@@ -13,9 +13,9 @@
                 <div class="pl-2">
                     <p class="text-xs">{{$post->user->name}}</p>
                     <p class="text-xs text-gray-500">
-                        @if ($interval->days === 0 && $interval->h === 0)
+                        @if ($interval->days < 1 && $interval->h === 0)
                             {{$interval->i}}分前
-                        @elseif ($interval->days === 0)
+                        @elseif ($interval->days < 1)
                             {{$interval->h}}時間前
                         @else
                             {{$post->updated_at->format('Y年m月d日')}}
