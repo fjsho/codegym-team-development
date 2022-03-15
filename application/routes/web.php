@@ -25,6 +25,5 @@ Route::resource('users', UserController::class)->only([
 ]);
 
 //Post用
-    Route::resource('posts', PostController::class);
-    //@check 表示確認のため表示機能実装作業中のみ無効化。
-    // ->middleware(['auth']);
+    Route::resource('posts', PostController::class)
+    ->middleware(['auth']);
