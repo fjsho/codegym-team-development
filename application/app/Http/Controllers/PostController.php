@@ -41,4 +41,18 @@ class PostController extends Controller
             'keyword' => $keyword,
         ]);
     }
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Post $post)
+    {
+        $interval = $post->updated_at->diff(now());
+        return view('posts.show', [
+            'post' => $post,
+            'interval' => $interval
+        ]);
+    }
 }

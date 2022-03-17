@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\AttachmentFile;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 
 class AttachmentFileFactory extends Factory
 {
@@ -21,8 +22,16 @@ class AttachmentFileFactory extends Factory
      */
     public function definition()
     {
+        $storage_dir_name = 'attachment_pic'; //ストレージとするディレクトリ名
+        $storage_dir_path = Storage::disk('local')->path('public/'.$storage_dir_name);
+        if(Storage::disk('local')->missing('public/'.$storage_dir_name)){
+            Storage::makeDirectory('public/'.$storage_dir_name);
+        }
+        $picture = $this->faker->image($storage_dir_path, 620, 325, 'city', false);
+        $file_path = str_replace($storage_dir_path, '', $picture);
+
         return [
-        'attachment_pic_path' => $this->faker->url
+        'attachment_pic_path' => $file_path,
         ];
     }
 }
