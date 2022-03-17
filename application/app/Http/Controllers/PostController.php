@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\UserFollowRelationship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -64,8 +65,12 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $storage_dir_name = 'attachment_pic'; //ストレージのディレクトリ名
+        $storage_dir_path = Storage::disk('local')->path('public/'.$storage_dir_name);
+        $pic_exist = file_exists($storage_dir_path.$post->attachment->attachment_pic_path);
         return view('posts.edit', [
             'post' => $post,
+            'pic_exist' => $pic_exist
         ]);
     }
 }
