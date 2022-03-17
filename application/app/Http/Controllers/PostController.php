@@ -55,6 +55,7 @@ class PostController extends Controller
             'interval' => $interval
         ]);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
