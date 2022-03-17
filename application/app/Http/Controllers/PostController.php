@@ -41,4 +41,17 @@ class PostController extends Controller
             'keyword' => $keyword,
         ]);
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Post  $task
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Post $post)
+    {
+        return view('posts.edit', [
+            'post' => $post,
+        ]);
+    }
 }
