@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\UserFollowRelationship;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -72,5 +73,30 @@ class PostController extends Controller
             'post' => $post,
             'pic_exist' => $pic_exist
         ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \app\Http\Requests\TaskUpdateRequest  $request
+     * @param  \App\Models\POST  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function update(StorePostRequest $request, Post $post)
+    {
+        $validated = $request->validated();
+
+        if ($post->update([
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+        ])) {
+            $flash = ['success' => __('Post updated successfully.')];
+        } else {
+            $flash = ['error' => __('Failed to update the post.')];
+        }
+
+        return redirect()
+            ->route('posts.edit', ['post' => $post])
+            ->with($flash);
     }
 }
