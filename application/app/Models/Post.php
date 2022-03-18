@@ -42,10 +42,10 @@ class Post extends Model
     /**
     * 投稿したユーザーを取得.
     */
-   public function user()
-   {
-       return $this->belongsTo(User::class, 'created_user_id');
-   }
+    public function user()
+    {
+    return $this->belongsTo(User::class, 'created_user_id');
+    }
 
     /**
      * 投稿に添付されている画像を取得.
