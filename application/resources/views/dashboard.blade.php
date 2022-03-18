@@ -56,7 +56,7 @@
                                         <img class="rounded-2xl w-full max-h-52 object-cover" src="{{asset('storage/attachment_pic/'.$post->attachment->attachment_pic_path)}}">
                                     </div>
                                     <div class="py-3 px-6 text-left max-w-xs truncate">
-                                        <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->title }}</a> 
+                                        <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a> 
                                     </div>
                                     <div class="py-3 px-6 text-left max-w-xs truncate flex justify-start">
                                         <div class="px-3">
