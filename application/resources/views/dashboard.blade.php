@@ -53,7 +53,7 @@
                             <div class="py-3 px-6 w-1/2">
                                 <div class="border-gray-200 rounded-2xl hover:bg-gray-300 cursor-pointer bg-gray-200 " onclick="location.href='{{ route('posts.edit', ['post' => $post->id]) }}'">
                                     <div class="py-3 px-6">
-                                        <img class="rounded-2xl w-full max-h-52 object-cover" src="{{asset('storage/profile_pic/'.$post->attachment->attachment_pic_path)}}">
+                                        <img class="rounded-2xl w-full max-h-52 object-cover" src="{{asset('storage/attachment_pic/'.$post->attachment->attachment_pic_path)}}">
                                     </div>
                                     <div class="py-3 px-6 text-left max-w-xs truncate">
                                         <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->title }}</a> 
