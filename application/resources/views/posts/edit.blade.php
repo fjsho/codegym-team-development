@@ -42,7 +42,7 @@
                 <div class="px-24">
                     <x-textarea name="title" class="w-full bg-transparent text-3xl font-bold leading-10" value="{{$post->title}}" placeholder="タイトル"  rows="2" maxlength="255"/>
                 </div>
-                <x-textarea name="content" class="w-full h-screen bg-white py-16 px-20 mb-20" :value="old('content', $post->content)" placeholder="学習で成功した体験をレシピとして投稿してみませんか？" maxlength="1000" />
+                <x-textarea name="content" class="w-full h-screen bg-white py-16 px-20 mb-20" :value="old('content', $post->content)" placeholder="学習で成功した体験をレシピとして投稿してみませんか？" maxlength="10000" />
             </form>
         </div>
     </article>
