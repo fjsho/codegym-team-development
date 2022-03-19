@@ -67,8 +67,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $storage_dir_name = 'attachment_pic'; //ストレージのディレクトリ名
-        $storage_dir_path = Storage::disk('local')->path('public/'.$storage_dir_name);
-        $pic_exist = file_exists($storage_dir_path.$post->attachment->attachment_pic_path);
+        $pic_exist = Storage::disk('local')
+            ->exists('public/'.$storage_dir_name.'/'.$post->attachment->attachment_pic_path);
         return view('posts.edit', [
             'post' => $post,
             'pic_exist' => $pic_exist
