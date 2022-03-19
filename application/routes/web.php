@@ -26,10 +26,8 @@ Route::resource('users', UserController::class)->only([
 ]);
 
 //Post用
-Route::resource('posts', PostController::class);
-// @check 確認のため一時的にコメントアウト。作業完了時は解除すること。
-// ->middleware(['auth']);
+Route::resource('posts', PostController::class)
+    ->middleware(['auth']);
 
-Route::resource('posts/{post}/attachment_files', AttachmentFileController::class);
-// @check 確認のため一時的にコメントアウト。作業完了時は解除すること。
-// ->middleware(['auth']);
+Route::resource('posts/{post}/attachment_files', AttachmentFileController::class)
+    ->middleware(['auth']);
