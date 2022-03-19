@@ -35,7 +35,7 @@ class AttachmentFileController extends Controller
         if ($attachment_file->update([
             'attachment_pic_path' => $file_name,
         ])) {
-            $flash = ['success' => __('Post updated successfully.')];
+            $flash = "";
         } else {
             $flash = ['error' => __('Failed to update the post.')];
         }

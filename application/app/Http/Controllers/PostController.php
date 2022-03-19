@@ -90,7 +90,7 @@ class PostController extends Controller
             'title' => $validated['title'],
             'content' => $validated['content'],
         ])) {
-            $flash = ['success' => __('Post updated successfully.')];
+            $flash = "";
         } else {
             $flash = ['error' => __('Failed to update the post.')];
         }
