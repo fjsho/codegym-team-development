@@ -15,6 +15,9 @@
 
 <x-app-layout>
     <x-slot name="header"></x-slot>
+    <!-- Validation Errors -->
+    <x-flash-message />
+    <x-validation-errors :errors="$errors" />
     <article class="w-screen max-w-4xl mx-auto px-10">
         <div class="flex flex-col px-24">
             <form name="uploadform" method="POST" action="{{ route('attachment_files.update', ['post' => $post->id, 'attachment_file' => $post->attachment ]) }}" enctype="multipart/form-data">
@@ -39,9 +42,7 @@
                 <div class="px-24">
                     <x-textarea name="title" class="w-full bg-transparent text-3xl font-bold leading-10" value="{{$post->title}}" placeholder="タイトル"  rows="2" maxlength="255"/>
                 </div>
-                <x-textarea name="content" class="w-full h-screen bg-white py-16 px-20 mb-20" :value="old('content', $post->content)" placeholder="学習で成功した体験をレシピとして投稿してみませんか？" maxlength="1000" autofocus />
-                {{-- テスト完成後削除 --}}
-                <x-submit-button-main>テスト</x-submit-button-main>
+                <x-textarea name="content" class="w-full h-screen bg-white py-16 px-20 mb-20" :value="old('content', $post->content)" placeholder="学習で成功した体験をレシピとして投稿してみませんか？" maxlength="1000" />
             </form>
         </div>
     </article>
