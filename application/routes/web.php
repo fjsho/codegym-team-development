@@ -25,5 +25,5 @@ Route::resource('users', UserController::class)->only([
 ]);
 
 //Post用
-    Route::resource('posts', PostController::class)
-    ->middleware(['auth']);
+    Route::resource('posts', PostController::class);
+    //->middleware(['auth']);

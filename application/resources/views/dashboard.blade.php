@@ -51,20 +51,25 @@
                         <div class="flex flex-wrap justify-center">
                         @foreach($posts as $post)
                             <div class="py-3 px-6 w-1/2">
-                                <div class="border-gray-200 rounded-2xl hover:bg-gray-300 cursor-pointer bg-gray-200 " onclick="location.href='{{ route('posts.edit', ['post' => $post->id]) }}'">
-                                    <div class="py-3 px-6 text-left max-w-xs truncate">
-                                        <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->title }}</a> 
+                                <div class="border-gray-200 rounded-2xl hover:bg-gray-300 cursor-pointer bg-gray-200 " onclick="location.href='{{ route('posts.show', ['post' => $post->id]) }}'">
+                                    <div class="py-3 px-6">
+                                        <img class="rounded-2xl w-full max-h-52 object-cover" src="{{asset('storage/attachment_pic/'.$post->attachment->attachment_pic_path)}}">
                                     </div>
                                     <div class="py-3 px-6 text-left max-w-xs truncate">
-                                        <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->user->name }}</a> 
+                                        <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a> 
+                                    </div>
+                                    <div class="py-3 px-6 text-left max-w-xs truncate flex justify-start">
+                                        <div class="px-3">
+                                            <img class="rounded-full h-7" src="{{asset('storage/profile_pic/'.$post->user->profile_pic_path)}}">
+                                        </div>
+                                        <div class="self-center" >
+                                            <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->user->name }}</a> 
+                                        </div>
                                     </div>
                                     <div class="py-3 px-6 text-left">
                                         <div>作成日:{{ $post->created_at->format('Y/m/d') }}</div>
                                         <div>更新日:{{ $post->updated_at->format('Y/m/d') }}</div>
                                     </div>
-                                    <!-- <div class="py-3 px-6 text-center">
-
-                                    </div> -->
                                 </div>
                             </div>
                         @endforeach
