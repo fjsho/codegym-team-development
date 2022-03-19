@@ -20,22 +20,18 @@ class AttachmentFileController extends Controller
      */
     public function update(Request $request, Post $post, AttachmentFile $attachment_file)
     {
-        //保存先ディレクトリがなければ新たに生成
         $storage_dir_name = 'attachment_pic';
-        if(Storage::disk('local')->missing('public/'.$storage_dir_name)){
-            Storage::makeDirectory('public/'.$storage_dir_name);
+        if(Storage::disk('public')->missing($storage_dir_name)){
+            Storage::disk('public')->makeDirectory($storage_dir_name);
         }
 
-        //バリデーション
         $validated = $request->validate([
             'file' => ['required', 'file', new AttachmentFileValidation]
         ]);
 
-        //ファイル保存
         $file_name = $validated['file']->hashName();
         $validated['file']->storeAs('public/'.$storage_dir_name, $file_name);
 
-        //更新
         if ($attachment_file->update([
             'attachment_pic_path' => $file_name,
         ])) {
