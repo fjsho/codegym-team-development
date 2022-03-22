@@ -12,6 +12,22 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+
+    /**
+     * 新規投稿作成
+     *
+     * @return view
+     */
+    public function create(Post $post)
+    {
+        $storage_dir_name = 'attachment_pic'; //ストレージのディレクトリ名
+        $pic_exist = Storage::disk('public')
+            ->exists($storage_dir_name.'/'.$post->attachment->attachment_pic_path);
+        return view('posts.create', [
+            'post' => $post,
+            'pic_exist' => $pic_exist
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
