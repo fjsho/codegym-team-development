@@ -23,9 +23,9 @@ class AttachmentFileFactory extends Factory
     public function definition()
     {
         $storage_dir_name = 'attachment_pic'; //ストレージとするディレクトリ名
-        $storage_dir_path = Storage::disk('local')->path('public/'.$storage_dir_name);
-        if(Storage::disk('local')->missing('public/'.$storage_dir_name)){
-            Storage::makeDirectory('public/'.$storage_dir_name);
+        $storage_dir_path = Storage::disk('public')->path($storage_dir_name);
+        if(Storage::disk('public')->missing($storage_dir_name)){
+            Storage::disc('public')->makeDirectory($storage_dir_name);
         }
         $picture = $this->faker->image($storage_dir_path, 620, 325, 'city', false);
         $file_path = str_replace($storage_dir_path, '', $picture);

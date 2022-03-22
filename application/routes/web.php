@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttachmentFileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +26,8 @@ Route::resource('users', UserController::class)->only([
 ]);
 
 //Post用
-    Route::resource('posts', PostController::class);
-    //->middleware(['auth']);
+Route::resource('posts', PostController::class)
+    ->middleware(['auth']);
+
+Route::resource('posts/{post}/attachment_files', AttachmentFileController::class)
+    ->middleware(['auth']);

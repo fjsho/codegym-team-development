@@ -7,6 +7,8 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\UserFollowRelationship;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -53,5 +55,47 @@ class PostController extends Controller
             'post' => $post,
             'interval' => $interval
         ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Post  $task
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Post $post)
+    {
+        $storage_dir_name = 'attachment_pic'; //ストレージのディレクトリ名
+        $pic_exist = Storage::disk('public')
+            ->exists($storage_dir_name.'/'.$post->attachment->attachment_pic_path);
+        return view('posts.edit', [
+            'post' => $post,
+            'pic_exist' => $pic_exist
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \app\Http\Requests\TaskUpdateRequest  $request
+     * @param  \App\Models\POST  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function update(StorePostRequest $request, Post $post)
+    {
+        $validated = $request->validated();
+
+        if ($post->update([
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+        ])) {
+            $flash = "";
+        } else {
+            $flash = ['error' => __('Failed to update the post.')];
+        }
+
+        return redirect()
+            ->route('posts.edit', ['post' => $post])
+            ->with($flash);
     }
 }
