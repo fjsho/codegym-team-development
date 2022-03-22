@@ -21,7 +21,6 @@ class PostController extends Controller
     {
         $request->validate([
             'keyword' => 'max:255',
-            //'assigner_id' => 'nullable|intedsadawdager',
         ]);
 
         $keyword = $request->input('keyword');
