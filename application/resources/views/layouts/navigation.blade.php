@@ -12,25 +12,34 @@
             </div>
 
             <!-- Settings Dropdown -->
-                <div class="hidden right-10 px-6 py-4 sm:block">
-                    <form method="POST" action="{{ route('logout') }}">
+            <div class="hidden min-w-max w-80 right-10 px-6 py-4 sm:block">
+                <form method="POST" action="{{ route('logout') }}">
+                    <div class="flex justify-around items-center">
                         @csrf
-                            <!-- ログインしている時 --> 
-                            @auth                              
-                                <a href="{{ route('logout') }}" class="text-sm text-black"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();">ログアウト
-                                </a>
-                                <a href="#" class="ml-10 text-sm text-black">{{ Auth::user()->name }}</a>
-                                <a href="{{ route('posts.create') }}" class="ml-10 inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white tracking-widest hover:bg-blue-400 disabled:opacity-25 transition ease-in-out duration-150">投稿する</a>
-                            @endauth
-                            <!-- ログインしていない時 -->
-                            @guest
-                                <a href="{{ route('login') }}" class="text-sm text-black">ログイン</a>
-                                <a href="{{ route('register') }}" class="ml-10 inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white tracking-widest hover:bg-blue-400 disabled:opacity-25 transition ease-in-out duration-150">会員登録</a>
-                            @endguest
-                        </form>
-                </div>
+                        <!-- ログインしている時 -->
+                        @auth
+                            <a href="{{ route('logout') }}" class="text-sm text-black"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">ログアウト
+                            </a>
+                            <a href="{{ route('users.show', ['user' => Auth::user()->id ]) }}" class="text-sm text-black">{{ Auth::user()->name }}</a>
+                            <!-- レシピ投稿画面にいる時 -->
+                            @if (Route::is('posts.create'))
+                                <x-submit-button-main form="post">公開する</x-submit-button-main>
+                            @elseif (Route::is('posts.edit'))
+                                <x-submit-button-main form="update">更新する</x-submit-button-main>
+                            @else
+                                <x-link-button-main  href="{{ route('posts.create') }}">投稿する</x-link-button-main>
+                            @endif
+                        @endauth
+                        <!-- ログインしていない時 -->
+                        @guest
+                            <a href="{{ route('login') }}" class="text-sm text-black">ログイン</a>
+                            <x-link-button-main  href="{{ route('register') }}">会員登録</x-link-button-main>
+                        @endguest
+                    </div>
+                </form>
+            </div>
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">

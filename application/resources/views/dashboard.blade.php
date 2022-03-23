@@ -55,7 +55,7 @@
                             <div class="group py-3 px-3 w-1/2">
                                 <div class="rounded-2xl cursor-pointer bg-white " onclick="location.href='{{ route('posts.show', ['post' => $post->id]) }}'">
                                     <div class="py-3 px-6">
-                                        <img class="group-hover:opacity-60 group-hover:duration-30 rounded-2xl w-full max-h-52 object-cover" src="{{asset('storage/attachment_pic/'.$post->attachment->attachment_pic_path)}}">
+                                        <img class="group-hover:opacity-60 group-hover:duration-30 rounded-2xl w-full max-h-52 object-cover" @if($post->attachment) src="{{asset('storage/attachment_pic/'.$post->attachment->attachment_pic_path)}}" @endif alt="サムネイル">
                                     </div>
                                     <div class="py-3 px-6 text-left max-w-xs truncate">
                                         <a class="text-2xl font-medium text-gray-900 hover:text-gray-600" href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a> 

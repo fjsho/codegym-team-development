@@ -35,7 +35,7 @@
             </form>
         </div>
         <div class="w-full">
-            <form method="POST" action="{{ route('posts.store', ['post' => $post]) }}">
+            <form id="post" method="POST" action="{{ route('posts.store', ['post' => $post]) }}">
                 @csrf
                 <div class="px-24">
                     <x-textarea name="title" class="w-full bg-transparent text-3xl font-bold leading-10" value="{{$post->title}}" placeholder="タイトル"  rows="2" maxlength="255"/>
