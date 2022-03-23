@@ -23,7 +23,7 @@ Route::get('/', [PostController::class, 'index'])
 require __DIR__.'/auth.php';
 
 Route::resource('users', UserController::class)->only([
-    'show'
+    'show','edit'
 ]);
 
 //Post用

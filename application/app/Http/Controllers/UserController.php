@@ -54,15 +54,26 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 指定したユーザーのプロフィールを編集する。
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
-    }
+        {
+            $storage_dir_name = 'profile_pic'; //ストレージのディレクトリ名
+            if(isset($post->user->profile_pic_path)){
+                $pic_exist = Storage::disk('public')
+                    ->exists($storage_dir_name.'/'.$post->user->profile_pic_path);
+            }else{
+                $pic_exist = "";
+            }
+            
+            return view('users.edit', [
+                'user' => $users,
+                'pic_exist' => $pic_exist
+            ]);
+        }
 
     /**
      * Update the specified resource in storage.
@@ -71,9 +82,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request, User $user)
     {
-        //
+        $validated = $request->validated();
+
+        if ($user->update([
+            'name' => $validated['title'],
+            'self_introduction' => $validated['self_introduction'],
+        ])) {
+            $flash = "";
+        } else {
+            $flash = ['error' => __('Failed to update the post.')];
+        }
+
+        return redirect()
+            ->route('user.edit', ['post' => $post])
+            ->with($flash);
     }
 
     /**
