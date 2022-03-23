@@ -65,7 +65,7 @@
                                             <img class="rounded-full h-7" src="{{asset('storage/profile_pic/'.$post->user->profile_pic_path)}}">
                                         </div>
                                         <div class="self-center" >
-                                            <a class="font-medium text-gray-900 hover:text-gray-600" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->user->name }}</a> 
+                                            <a class="font-medium text-gray-900 hover:text-gray-600" href="{{ route('users.show', ['user' => $post->user->id]) }}">{{ $post->user->name }}</a> 
                                         </div>
                                     </div>
                                     <div class="py-3 px-6 text-left">
