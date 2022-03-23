@@ -34,6 +34,33 @@ class PostController extends Controller
             'pic_exist' => $pic_exist
         ]);
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \app\Http\Requests\StorePostRequest  $request
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StorePostRequest $request)
+    {
+        $validated = $request->validated();
+
+        if ($post = Post::create([
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+            'created_user_id' => $request->user()->id,
+        ])) {
+            $flash = "";
+        } else {
+            $flash = ['error' => __('Failed to store the post.')];
+        }
+
+        return redirect()
+            ->route('posts.edit', ['post' => $post])
+            ->with($flash);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -64,6 +91,7 @@ class PostController extends Controller
             'keyword' => $keyword,
         ]);
     }
+
     /**
      * Display the specified resource.
      *
@@ -90,7 +118,7 @@ class PostController extends Controller
         $storage_dir_name = 'attachment_pic'; //ストレージのディレクトリ名
         if(isset($post->attachment)){
             $pic_exist = Storage::disk('public')
-            ->exists($storage_dir_name.'/'.$post->attachment->attachment_pic_path);
+                ->exists($storage_dir_name.'/'.$post->attachment->attachment_pic_path);
         }else{
             $pic_exist = "";
         }
