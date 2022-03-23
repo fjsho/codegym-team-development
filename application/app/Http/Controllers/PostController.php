@@ -21,13 +21,58 @@ class PostController extends Controller
     public function create(Post $post)
     {
         $storage_dir_name = 'attachment_pic'; //ストレージのディレクトリ名
-        $pic_exist = Storage::disk('public')
+        // @fixme 以下の処理は後ほどモデルに移す
+        if(isset($post->attachment)){
+            $pic_exist = Storage::disk('public')
             ->exists($storage_dir_name.'/'.$post->attachment->attachment_pic_path);
+        }else{
+            $pic_exist = "";
+        }
+
         return view('posts.create', [
             'post' => $post,
             'pic_exist' => $pic_exist
         ]);
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \app\Http\Requests\StorePostRequest  $request
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StorePostRequest $request)
+    {
+        $validated = $request->validated();
+        if ($post = Post::create([
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+            'created_user_id' => $request->user()->id,
+        ])) {
+            $flash = "";
+        } else {
+            $flash = ['error' => __('Failed to store the post.')];
+        }
+
+        // @fixme if以下の一連の処理は後ほど適当なモデルに移す
+        // セッションにtmp_fileがあったら、アタッチメントテーブルに登録し、ポストテーブルに紐付けて、画像を一時保存ディレクトリから本保存ディレクトリに移す
+        if(session()->has('tmp_file')){
+            if($attachment_file = AttachmentFile::create([
+                'attachment_pic_path' => $request->session()->get('tmp_file'),
+            ])){
+                $post->update([
+                    'attachment_id' => $attachment_file->id,
+                ]);
+                Storage::disk('public')->move('./tmp/'.$attachment_file->attachment_pic_path, './attachment_pic/'.$attachment_file->attachment_pic_path);
+            }
+        }
+
+        return redirect()
+            ->route('posts.edit', ['post' => $post])
+            ->with($flash);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -58,6 +103,7 @@ class PostController extends Controller
             'keyword' => $keyword,
         ]);
     }
+
     /**
      * Display the specified resource.
      *
@@ -82,8 +128,13 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $storage_dir_name = 'attachment_pic'; //ストレージのディレクトリ名
-        $pic_exist = Storage::disk('public')
-            ->exists($storage_dir_name.'/'.$post->attachment->attachment_pic_path);
+        if(isset($post->attachment)){
+            $pic_exist = Storage::disk('public')
+                ->exists($storage_dir_name.'/'.$post->attachment->attachment_pic_path);
+        }else{
+            $pic_exist = "";
+        }
+
         return view('posts.edit', [
             'post' => $post,
             'pic_exist' => $pic_exist
