@@ -21,7 +21,7 @@ class PostController extends Controller
     public function create(Post $post)
     {
         $storage_dir_name = 'attachment_pic'; //ストレージのディレクトリ名
-        // @todo 以下の処理は後ほどモデルに移す
+        // @fixme 以下の処理は後ほどモデルに移す
         if(isset($post->attachment)){
             $pic_exist = Storage::disk('public')
             ->exists($storage_dir_name.'/'.$post->attachment->attachment_pic_path);
@@ -45,7 +45,6 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $validated = $request->validated();
-
         if ($post = Post::create([
             'title' => $validated['title'],
             'content' => $validated['content'],
@@ -54,6 +53,19 @@ class PostController extends Controller
             $flash = "";
         } else {
             $flash = ['error' => __('Failed to store the post.')];
+        }
+
+        // @fixme if以下の一連の処理は後ほど適当なモデルに移す
+        // セッションにtmp_fileがあったら、アタッチメントテーブルに登録し、ポストテーブルに紐付けて、画像を一時保存ディレクトリから本保存ディレクトリに移す
+        if(session()->has('tmp_file')){
+            if($attachment_file = AttachmentFile::create([
+                'attachment_pic_path' => $request->session()->get('tmp_file'),
+            ])){
+                $post->update([
+                    'attachment_id' => $attachment_file->id,
+                ]);
+                Storage::disk('public')->move('./tmp/'.$attachment_file->attachment_pic_path, './attachment_pic/'.$attachment_file->attachment_pic_path);
+            }
         }
 
         return redirect()
