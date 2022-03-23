@@ -21,8 +21,14 @@ class PostController extends Controller
     public function create(Post $post)
     {
         $storage_dir_name = 'attachment_pic'; //ストレージのディレクトリ名
-        $pic_exist = Storage::disk('public')
+        // @todo 以下の処理は後ほどモデルに移す
+        if(isset($post->attachment)){
+            $pic_exist = Storage::disk('public')
             ->exists($storage_dir_name.'/'.$post->attachment->attachment_pic_path);
+        }else{
+            $pic_exist = "";
+        }
+
         return view('posts.create', [
             'post' => $post,
             'pic_exist' => $pic_exist
@@ -82,8 +88,13 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $storage_dir_name = 'attachment_pic'; //ストレージのディレクトリ名
-        $pic_exist = Storage::disk('public')
+        if(isset($post->attachment)){
+            $pic_exist = Storage::disk('public')
             ->exists($storage_dir_name.'/'.$post->attachment->attachment_pic_path);
+        }else{
+            $pic_exist = "";
+        }
+
         return view('posts.edit', [
             'post' => $post,
             'pic_exist' => $pic_exist
