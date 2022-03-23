@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttachmentFileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TmpFileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,10 @@ Route::resource('users', UserController::class)->only([
 
 //Post用
 Route::resource('posts', PostController::class)
+    ->middleware(['auth']);
+
+Route::post('posts/storeTmpFile', [TmpFileController::class, 'storeTmpFile'])
+    ->name('posts.storeTmpFile')
     ->middleware(['auth']);
 
 Route::resource('posts/{post}/attachment_files', AttachmentFileController::class)
