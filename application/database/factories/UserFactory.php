@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class UserFactory extends Factory
 {
@@ -23,8 +24,12 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        //ダミープロフィール画像保存用の記述
-        $storage_dir_path = './storage/app/public/profile_pic';
+        $storage_dir_name = 'profile_pic'; //ストレージとするディレクトリ名
+        $storage_dir_path = Storage::disk('public')->path($storage_dir_name);
+        if(Storage::disk('public')->missing($storage_dir_name)){
+            Storage::disk('public')->makeDirectory($storage_dir_name);
+        }
+
         $picture = $this->faker->image($storage_dir_path, 300, 300, 'people', false);
         $file_path = str_replace($storage_dir_path, '', $picture);
 
