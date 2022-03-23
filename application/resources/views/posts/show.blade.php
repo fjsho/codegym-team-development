@@ -4,10 +4,10 @@
         <div class="flex flex-col px-24">
             <div class="w-2xl my-12">
                 @if($post->attachment)
-                    <x-eye-chacher src="/storage/attachment_pic/{{$post->attachment->attachment_pic_path}}" class="h-80 mx-auto cursor-pointer" />
+                    <x-eye-chacher src="/storage/attachment_pic/{{$post->attachment->attachment_pic_path}}" class="h-80 mx-auto" />
                 @else
                     {{-- @todo ほんとはダミー画像を入れたいところ --}}
-                    <x-upload-icon class="w-12 h-12 cursor-pointer" />
+                    <x-upload-icon class="w-12 h-12" />
                 @endif
             </div>
             <h1 class="pb-12 text-3xl font-bold">{{$post->title}}</h1>
