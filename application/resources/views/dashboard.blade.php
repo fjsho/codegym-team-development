@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Posts') }}
-        </h2>
+        <div class="flex max-w-full mt-8 ml-5 px-4 py-6 sm:px-6 lg:px-6">
+            <div class="font-medium text-2xl text-black leading-tight">
+                {{ __('Posts') }}
+            </div>
+        </div>
 
     <form method="GET" action="{{ route('dashboard') }}">
         <!-- Validation Errors -->
@@ -12,17 +14,17 @@
         <!-- Navigation -->
         <div class="flex max-w-full mx-auto px-4 py-6 sm:px-6 lg:px-6">
             <div class="md:w-1/3 px-3 mb-6 mr-6">
-                <x-label for="key" :value="__('Keyword')" class="{{ $errors->has('keyword') ? 'text-red-600' :'' }}" />
-                <x-input id="keyword" class="block mt-1 w-full {{ $errors->has('keyword') ? 'border-red-600' :'' }}" type="text" name="keyword" :value="$keyword" :placeholder="__('Keyword')" autofocus />
+                <x-label for="key" :value="__('Keyword')" class="{{ $errors->has('keyword') ? 'text-red-600' :'' }} ml-3" />
+                <x-input id="keyword" class="block mt-1 w-full {{ $errors->has('keyword') ? 'border-red-600' :'' }}" type="text" name="keyword" :value="$keyword" placeholder="TOEIC、簿記、ITパスポート" autofocus />
             </div>
             <div class="flex flex-wrap content-center">
-                <x-button class="px-10">
+                <x-button class="px-5">
                     {{ __('Search') }}
                 </x-button>
             </div>
         </div>
 
-        <div class="flex flex-col mx-6 mb-6 bg-white rounded">
+        <div class="flex flex-col mx-6 mb-6 rounded">
             @if(0 < $posts->count())
                 <div class="flex justify-start p-2">
                     {{ $posts->appends(request()->query())->links() }}
@@ -50,20 +52,20 @@
                     <div class="text-gray-600 text-sm font-light">
                         <div class="flex flex-wrap justify-center">
                         @foreach($posts as $post)
-                            <div class="py-3 px-6 w-1/2">
-                                <div class="border-gray-200 rounded-2xl hover:bg-gray-300 cursor-pointer bg-gray-200 " onclick="location.href='{{ route('posts.show', ['post' => $post->id]) }}'">
+                            <div class="group py-3 px-3 w-1/2">
+                                <div class="rounded-2xl cursor-pointer bg-white " onclick="location.href='{{ route('posts.show', ['post' => $post->id]) }}'">
                                     <div class="py-3 px-6">
-                                        <img class="rounded-2xl w-full max-h-52 object-cover" src="{{asset('storage/attachment_pic/'.$post->attachment->attachment_pic_path)}}">
+                                        <img class="group-hover:opacity-60 group-hover:duration-30 rounded-2xl w-full max-h-52 object-cover" src="{{asset('storage/attachment_pic/'.$post->attachment->attachment_pic_path)}}">
                                     </div>
                                     <div class="py-3 px-6 text-left max-w-xs truncate">
-                                        <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a> 
+                                        <a class="text-2xl font-medium text-gray-900 hover:text-gray-600" href="{{ route('posts.show', ['post' => $post->id]) }}">{{ $post->title }}</a> 
                                     </div>
                                     <div class="py-3 px-6 text-left max-w-xs truncate flex justify-start">
                                         <div class="px-3">
                                             <img class="rounded-full h-7" src="{{asset('storage/profile_pic/'.$post->user->profile_pic_path)}}">
                                         </div>
                                         <div class="self-center" >
-                                            <a class="underline font-medium text-gray-600 hover:text-gray-900" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->user->name }}</a> 
+                                            <a class="font-medium text-gray-900 hover:text-gray-600" href="{{ route('posts.edit', ['post' => $post->id]) }}">{{ $post->user->name }}</a> 
                                         </div>
                                     </div>
                                     <div class="py-3 px-6 text-left">
