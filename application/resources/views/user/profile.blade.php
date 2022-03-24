@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex py-12">
             <div class="flex-shrink-0 w-32 h-32">
-                <x-profile-pic src="/storage/profile_pic/{{$profile->profile_pic_path}}"></x-profile-pic>
+                <x-profile-pic src="{{ asset('storage/profile_pic/'.$profile->profile_pic_path)}}"></x-profile-pic>
             </div>
             <div class="w-full pt-4 pl-7">
                 <div class="flex justify-between">

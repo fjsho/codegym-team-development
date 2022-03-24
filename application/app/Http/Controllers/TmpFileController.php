@@ -22,7 +22,7 @@ class TmpFileController extends Controller
             $tmp_file_path = basename($file->store('public/tmp'));
             $request->session()->put('tmp_file', $tmp_file_path);
 
-            $flash = ['success' => __('File added successfully.')];
+            $flash = "";
         } else {
             $flash = ['error' => __('Failed to add the file.')];
         }
