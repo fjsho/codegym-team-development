@@ -22,9 +22,8 @@ Route::get('/', [PostController::class, 'index'])
 
 require __DIR__.'/auth.php';
 
-Route::resource('users', UserController::class)->only([
-    'show','edit'
-]);
+Route::resource('users', UserController::class)
+    ->middleware(['auth']);
 
 //Post用
 Route::resource('posts', PostController::class)
