@@ -20,7 +20,13 @@
     <x-validation-errors :errors="$errors" />
     <article class="w-screen max-w-4xl mx-auto px-10">
         <div class="flex flex-col px-24">
-            <form name="uploadform" method="POST" action="{{ route('attachment_files.update', ['post' => $post->id, 'attachment_file' => $post->attachment ]) }}" enctype="multipart/form-data">
+            <form name="uploadform" method="POST"
+                @if($pic_exist)
+                    action="{{ route('attachment_files.update', ['post' => $post->id, 'attachment_file' => $post->attachment ]) }}"
+                @else
+                    action="{{ route('attachment_files.store', ['post' => $post->id]) }}"
+                @endif
+                    enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="w-2xl my-12">
@@ -36,7 +42,7 @@
             </form>
         </div>
         <div class="w-full">
-            <form method="POST" action="{{ route('posts.update', ['post' => $post]) }}">
+            <form id="update" method="POST" action="{{ route('posts.update', ['post' => $post]) }}">
                 @csrf
                 @method('PUT')
                 <div class="px-24">
