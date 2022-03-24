@@ -22,7 +22,12 @@
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">ログアウト
                             </a>
-                            <a href="{{ route('users.show', ['user' => Auth::user()->id ]) }}" class="text-sm text-black">{{ Auth::user()->name }}</a>
+                            <div>
+                                <a href="{{ route('users.show', ['user' => Auth::user()->id ]) }}">
+                                    <x-profile-pic class="w-9 h-9" src="{{ asset('storage/profile_pic/'.Auth::user()->profile_pic_path)}}" />
+                                </a>
+                            </div>
+
                             <!-- レシピ投稿画面にいる時 -->
                             @if (Route::is('posts.create'))
                                 <x-submit-button-main form="post">公開する</x-submit-button-main>
