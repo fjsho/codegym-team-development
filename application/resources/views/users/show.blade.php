@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex py-12">
             <div class="flex-shrink-0 w-32 h-32">
-                <x-profile-pic src="{{ asset('storage/profile_pic/'.$profile->profile_pic_path)}}"></x-profile-pic>
+                <x-profile-pic src="{{ asset('storage/profile_pic/'.$profile->profile_pic_path)}}" />
             </div>
             <div class="w-full pt-4 pl-7">
                 <div class="flex justify-between">
@@ -11,8 +11,7 @@
                     </div>
                     <div>
                         @if ($user->id === $profile->id)
-                        {{-- @TODO プロフィール編集画面完成後、リンクを差し替える --}}
-                            <x-link-button-gray href="{{ route('users.show', ['user' => $user->id])}}">プロフィール編集</x-link-button-gray>
+                            <x-link-button-gray href="{{ route('users.edit', ['user' => $user->id])}}">プロフィール編集</x-link-button-gray>
                         {{-- @TODO フォロー機能追加後、ボタンにそれぞれ機能を付与する --}}
                         @elseif ($user->following->contains('id', $profile->id))
                             <x-unfollow-button>フォロー中</x-unfollow-button>
