@@ -5,40 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Rules\ProfilePicValidation;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * 指定したユーザーのプロフィール画面を表示する
      *
@@ -47,7 +18,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('user.profile', [
+        return view('users.show', [
             'user' => Auth::user(),
             'profile' => User::findOrFail($id),
         ]);
@@ -61,17 +32,9 @@ class UserController extends Controller
      */
     public function edit($id)
         {
-            $storage_dir_name = 'profile_pic'; //ストレージのディレクトリ名
-            if(isset($post->user->profile_pic_path)){
-                $pic_exist = Storage::disk('public')
-                    ->exists($storage_dir_name.'/'.$post->user->profile_pic_path);
-            }else{
-                $pic_exist = "";
-            }
-            
             return view('users.edit', [
-                'user' => $users,
-                'pic_exist' => $pic_exist
+                'user' => Auth::user(),
+                'profile' => User::findOrFail($id),
             ]);
         }
 
@@ -82,21 +45,37 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'name' => 'required|string|max:50',
+            'self_introduction' => 'string|max:1000',
+            'file' => ['file', new ProfilePicValidation],
+        ]);
+
+        $storage_dir_name = 'profile_pic';
+        if(isset($validated['file'])){
+            $file_name = $validated['file']->hashName();
+            $validated['file']->storeAs('public/'.$storage_dir_name, $file_name);
+        } else {
+            $file_name = $user->profile_pic_path;
+        }
 
         if ($user->update([
-            'name' => $validated['title'],
+            'name' => $validated['name'],
             'self_introduction' => $validated['self_introduction'],
+            'profile_pic_path' => $file_name,
         ])) {
             $flash = "";
         } else {
-            $flash = ['error' => __('Failed to update the post.')];
+            $flash = ['error' => __('Failed to update the user.')];
         }
 
         return redirect()
-            ->route('user.edit', ['post' => $post])
+            ->route('users.edit', [
+                'user' => $user,
+                'profile' => $user,
+                ])
             ->with($flash);
     }
 
