@@ -1,5 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
+        <!-- Validation Errors -->
+        <x-flash-message />
+        <x-validation-errors :errors="$errors" />
         <div class="flex max-w-full mt-8 ml-5 px-4 py-6 sm:px-6 lg:px-6">
             <div class="font-medium text-2xl text-black leading-tight">
                 {{ __('Posts') }}
@@ -7,10 +10,6 @@
         </div>
 
     <form method="GET" action="{{ route('dashboard') }}">
-        <!-- Validation Errors -->
-        <x-flash-message />
-        <x-validation-errors :errors="$errors" />
-
         <!-- Navigation -->
         <div class="flex max-w-full mx-auto px-4 py-6 sm:px-6 lg:px-6">
             <div class="md:w-1/3 px-3 mb-6 mr-6">
