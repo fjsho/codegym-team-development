@@ -50,9 +50,9 @@ class PostController extends Controller
             'content' => $validated['content'],
             'created_user_id' => $request->user()->id,
         ])) {
-            $flash = "";
+            $flash = ['success' => __('Recipe stored successfully.')];
         } else {
-            $flash = ['error' => __('Failed to store the post.')];
+            $flash = ['error' => __('Failed to store the recipe.')];
         }
 
         // @fixme if以下の一連の処理は後ほど適当なモデルに移す
@@ -69,7 +69,7 @@ class PostController extends Controller
         }
 
         return redirect()
-            ->route('posts.edit', ['post' => $post])
+            ->route('dashboard')
             ->with($flash);
     }
 
@@ -156,13 +156,13 @@ class PostController extends Controller
             'title' => $validated['title'],
             'content' => $validated['content'],
         ])) {
-            $flash = "";
+            $flash = ['success' => __('Recipe update successfully.')];
         } else {
-            $flash = ['error' => __('Failed to update the post.')];
+            $flash = ['error' => __('Failed to update the recipe.')];
         }
 
         return redirect()
-            ->route('posts.edit', ['post' => $post])
+            ->route('dashboard')
             ->with($flash);
     }
 }
