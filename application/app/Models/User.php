@@ -65,6 +65,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function recipes()
     {
-        return $this->hasMany(Project::class, 'created_user_id');
+        return $this->hasMany(Post::class, 'created_user_id');
     }
 }
