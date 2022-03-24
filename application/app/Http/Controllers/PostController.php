@@ -87,7 +87,8 @@ class PostController extends Controller
         $keyword = $request->input('keyword');
         $posts = Post::select('*')
             ->with('user')
-            ->with('attachment');
+            ->with('attachment')
+            ->orderBy('created_at', 'desc');
         
         //検索機能
         if ($request->has('keyword') && $keyword != '') {
