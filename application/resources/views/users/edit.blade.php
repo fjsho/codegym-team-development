@@ -15,6 +15,10 @@
 
 <x-app-layout>
     <x-slot name="header">
+        <!-- Validation Errors -->
+        <x-flash-message />
+        <x-validation-errors :errors="$errors" />
+
         <h1 class="py-6 px-6 text-3xl leading-10">アカウント設定</h1>
         <form name="update" method="POST" action="{{ route('users.update', ['user' => $profile->id ]) }}" enctype="multipart/form-data">
             @csrf
