@@ -17,6 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< HEAD
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+=======
 Route::get('/', [PostController::class, 'index'])
     ->name('dashboard');
 
@@ -34,3 +45,4 @@ Route::post('posts/storeTmpFile', [TmpFileController::class, 'storeTmpFile'])
 
 Route::resource('posts/{post}/attachment_files', AttachmentFileController::class)
     ->middleware(['auth']);
+>>>>>>> release/ver1.0
