@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AttachmentFileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\TmpFileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,12 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/', [PostController::class, 'index'])
+    ->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::resource('users', UserController::class)
+    ->middleware(['auth']);
+
+Route::resource('posts', PostController::class)
+    ->middleware(['auth']);
+
+Route::post('posts/storeTmpFile', [TmpFileController::class, 'storeTmpFile'])
+    ->name('posts.storeTmpFile')
+    ->middleware(['auth']);
+
+Route::resource('posts/{post}/attachment_files', AttachmentFileController::class)
+    ->middleware(['auth']);

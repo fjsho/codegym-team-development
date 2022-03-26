@@ -151,6 +151,10 @@
     "You may delete any of your existing tokens if they are no longer needed.": "不要なAPIトークンを削除する。",
     "You may not delete your personal team.": "パーソナルチームを削除することはできません。",
     "You may not leave a team that you created.": "自身が作成したチームを離れることはできません。",
+    "Posts": "新着レシピ一覧",
+    "Post Create": "レシピの作成",
+    "Post Title": "レシピ名",
+    "Post Creater": "レシピ作成者",
     "Projects": "プロジェクト一覧",
     "Project Create": "プロジェクトの作成",
     "Project Key": "プロジェクトキー",
@@ -195,5 +199,11 @@
     "Task deleted successfully.": "課題を削除しました。",
     "Failed to delete the task.": "課題情報の削除に失敗しました。",
     "Are you sure you want to delete this task?": "課題を削除しますか？",
-    "Are you sure you want to delete this task? Once a task is deleted, all of its resources and data will be permanently deleted.": "本当に課題を削除してよろしいでしょうか？一度課題を削除すると、すべてのリソースとデータは永久に削除されます。"
+    "Are you sure you want to delete this task? Once a task is deleted, all of its resources and data will be permanently deleted.": "本当に課題を削除してよろしいでしょうか？一度課題を削除すると、すべてのリソースとデータは永久に削除されます。",
+    "Picture should be JPG, PNG, GIF, or TIFF images no larger than 10MB.": "10MB以下の画像ファイル（JPG, PNG, GIF, TIFF）を選択してください",
+    "Recipe stored successfully.": "レシピを投稿しました！",
+    "Failed to store the recipe.": "レシピの投稿に失敗しました。",
+    "Recipe updated successfully.": "レシピを更新しました！",
+    "Failed to update the recipe.": "レシピの更新に失敗しました。"
+
 }
