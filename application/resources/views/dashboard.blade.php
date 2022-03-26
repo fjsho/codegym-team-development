@@ -82,5 +82,7 @@
                 </div>
                 @endif
         </div>
-    </div>
+    </form>
+
 </x-app-layout>
+
